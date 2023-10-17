@@ -1,0 +1,19 @@
+import 'package:mvvm_provider_restapi_pref_solid_domainlayer/data/response/status.dart';
+
+class ApiResponse<T>{
+  Status? status;
+  T? data; //response data
+  String? message;
+
+  ApiResponse(this.status,this.message,this.data);
+
+  ApiResponse.loading() : status = Status.LOADING;
+  ApiResponse.completed(this.data) : status = Status.COMPLETED;
+  ApiResponse.error(this.message) : status = Status.ERROR;
+  ApiResponse.downloading() : status = Status.DOWNLOADING;
+
+  @override
+  String toString() {
+    return "Status: $status \nMessage: $message \nData: $data";
+  }
+}
