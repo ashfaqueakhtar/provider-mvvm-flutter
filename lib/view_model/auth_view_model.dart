@@ -17,9 +17,8 @@ class AuthViewModel with ChangeNotifier {
 
   //Getter
   bool get loading => _loading;
-  bool get registerLoading => _registerLoading;
 
-  
+  bool get registerLoading => _registerLoading;
 
   //Setter
   setLoading(bool value) {
@@ -38,7 +37,8 @@ class AuthViewModel with ChangeNotifier {
       setLoading(false);
       if (kDebugMode) print(value.toString());
       UserViewModel().saveUser(UserModel(token: value["token"]));
-      context.go("/home"); //Navigator.pushNamed(context, RoutesName.home);
+      //context.go(RoutesName.home);
+      GoRouter.of(context).pushNamed(RoutesName.home);
     }).onError((error, stackTrace) {
       setLoading(false);
       Utils.flushErrorBarMessage(error.toString(), context);
@@ -51,7 +51,8 @@ class AuthViewModel with ChangeNotifier {
     _authRepo.postRegisterApi(data).then((value) {
       setRegisterLoading(false);
       if (kDebugMode) print(value.toString());
-      context.go("/home"); //Navigator.pushNamed(context, RoutesName.home);
+      //context.go(RoutesName.home);
+      GoRouter.of(context).pushNamed(RoutesName.home);
     }).onError((error, stackTrace) {
       setRegisterLoading(false);
       Utils.flushErrorBarMessage(error.toString(), context);

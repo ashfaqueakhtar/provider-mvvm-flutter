@@ -4,6 +4,7 @@ import 'package:mvvm_provider_restapi_pref_solid_domainlayer/utils/routes/routes
 import 'package:mvvm_provider_restapi_pref_solid_domainlayer/utils/utils.dart';
 import 'package:mvvm_provider_restapi_pref_solid_domainlayer/view_model/auth_view_model.dart';
 import 'package:provider/provider.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -98,7 +99,8 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             InkWell(
                 onTap: () {
-                  Navigator.of(context).pushNamed(RoutesName.signUp);
+                  GoRouter.of(context).pushNamed(RoutesName.signUp);
+                  //context.go(RoutesName.signUp);
                 },
                 child: Text("Don't have and account? SignUp here!")),
           ],

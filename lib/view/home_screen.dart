@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mvvm_provider_restapi_pref_solid_domainlayer/data/response/status.dart';
+import 'package:mvvm_provider_restapi_pref_solid_domainlayer/utils/routes/routes_names.dart';
 import 'package:mvvm_provider_restapi_pref_solid_domainlayer/view_model/home_view_model.dart';
 import 'package:mvvm_provider_restapi_pref_solid_domainlayer/view_model/user_view_model.dart';
 import 'package:provider/provider.dart';
@@ -25,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
           InkWell(
             onTap: () {
               userViewModel.removeUser().then((value) {
-                context.go("/login");
+                GoRouter.of(context).pushNamed(RoutesName.login);
               });
             },
             child: const Center(

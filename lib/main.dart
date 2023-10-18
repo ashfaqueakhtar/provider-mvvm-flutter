@@ -23,7 +23,9 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        routerConfig: Routes.router,
+        routeInformationParser: Routes.router.routeInformationParser,
+        routerDelegate: Routes.router.routerDelegate,
+        routeInformationProvider: Routes.router.routeInformationProvider,
       ),
     );
   }
