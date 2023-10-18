@@ -26,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
           InkWell(
             onTap: () {
               userViewModel.removeUser().then((value) {
-                GoRouter.of(context).pushNamed(RoutesName.login);
+                GoRouter.of(context).pushReplacementNamed(RoutesName.login);
               });
             },
             child: const Center(

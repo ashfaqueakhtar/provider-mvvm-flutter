@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:mvvm_provider_restapi_pref_solid_domainlayer/model/user_model.dart';
@@ -37,8 +35,7 @@ class AuthViewModel with ChangeNotifier {
       setLoading(false);
       if (kDebugMode) print(value.toString());
       UserViewModel().saveUser(UserModel(token: value["token"]));
-      //context.go(RoutesName.home);
-      GoRouter.of(context).pushNamed(RoutesName.home);
+      GoRouter.of(context).pushReplacementNamed(RoutesName.home);
     }).onError((error, stackTrace) {
       setLoading(false);
       Utils.flushErrorBarMessage(error.toString(), context);
@@ -51,8 +48,7 @@ class AuthViewModel with ChangeNotifier {
     _authRepo.postRegisterApi(data).then((value) {
       setRegisterLoading(false);
       if (kDebugMode) print(value.toString());
-      //context.go(RoutesName.home);
-      GoRouter.of(context).pushNamed(RoutesName.home);
+      GoRouter.of(context).pushReplacementNamed(RoutesName.home);
     }).onError((error, stackTrace) {
       setRegisterLoading(false);
       Utils.flushErrorBarMessage(error.toString(), context);
