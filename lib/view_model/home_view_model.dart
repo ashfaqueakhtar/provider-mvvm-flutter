@@ -14,9 +14,9 @@ class HomeViewModel with ChangeNotifier {
   }
 
   Future<void> fetchMovieList() async {
-      setMovieList(ApiResponse.loading());
-      _homeRepo.getMovieList().then((value) {
-        setMovieList(ApiResponse.completed(value as MovieModel?));
+    setMovieList(ApiResponse.loading());
+    _homeRepo.getMovieList().then((value) {
+      setMovieList(ApiResponse.completed(value as MovieModel?));
     }).onError((error, stackTrace) {
       setMovieList(ApiResponse.error(error.toString()));
     });

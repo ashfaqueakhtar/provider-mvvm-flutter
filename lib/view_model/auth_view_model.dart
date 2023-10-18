@@ -7,6 +7,7 @@ import 'package:mvvm_provider_restapi_pref_solid_domainlayer/repository/auth_rep
 import 'package:mvvm_provider_restapi_pref_solid_domainlayer/utils/routes/routes_names.dart';
 import 'package:mvvm_provider_restapi_pref_solid_domainlayer/utils/utils.dart';
 import 'package:mvvm_provider_restapi_pref_solid_domainlayer/view_model/user_view_model.dart';
+import 'package:go_router/go_router.dart';
 
 class AuthViewModel with ChangeNotifier {
   final _authRepo = AuthRepository();
@@ -37,7 +38,7 @@ class AuthViewModel with ChangeNotifier {
       setLoading(false);
       if (kDebugMode) print(value.toString());
       UserViewModel().saveUser(UserModel(token: value["token"]));
-      Navigator.pushNamed(context, RoutesName.home);
+      context.go("/home"); //Navigator.pushNamed(context, RoutesName.home);
     }).onError((error, stackTrace) {
       setLoading(false);
       Utils.flushErrorBarMessage(error.toString(), context);
@@ -50,7 +51,7 @@ class AuthViewModel with ChangeNotifier {
     _authRepo.postRegisterApi(data).then((value) {
       setRegisterLoading(false);
       if (kDebugMode) print(value.toString());
-      Navigator.pushNamed(context, RoutesName.home);
+      context.go("/home"); //Navigator.pushNamed(context, RoutesName.home);
     }).onError((error, stackTrace) {
       setRegisterLoading(false);
       Utils.flushErrorBarMessage(error.toString(), context);
