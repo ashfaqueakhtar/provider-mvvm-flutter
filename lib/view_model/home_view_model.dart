@@ -21,4 +21,6 @@ class HomeViewModel with ChangeNotifier {
       setMovieList(ApiResponse.error(error.toString()));
     });
   }
+
+
 }

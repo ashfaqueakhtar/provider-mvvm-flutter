@@ -14,10 +14,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+
   @override
   Widget build(BuildContext context) {
     final userViewModel = Provider.of<UserViewModel>(context, listen: false);
-    final homeViewModel = Provider.of<HomeViewModel>(context, listen: false);
+    //final homeViewModel = Provider.of<HomeViewModel>(context, listen: false);
 
     return Scaffold(
       appBar: AppBar(
@@ -37,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       body: ChangeNotifierProvider(
-        create: (context) => homeViewModel,
+        create: (context) => HomeViewModel(),
         child: Consumer<HomeViewModel>(
           builder: (context, value, child) {
             switch (value.movieList.status) {
