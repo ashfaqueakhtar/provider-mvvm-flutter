@@ -14,12 +14,16 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    print("HOME: Main Build called");
     final userViewModel = Provider.of<UserViewModel>(context, listen: false);
-    //final homeViewModel = Provider.of<HomeViewModel>(context, listen: false);
+    final homeViewModel = Provider.of<HomeViewModel>(context, listen: false);
 
     return Scaffold(
       appBar: AppBar(
@@ -38,15 +42,19 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      body: ChangeNotifierProvider(
-        create: (context) => HomeViewModel(),
-        child: Consumer<HomeViewModel>(
+      body: Column(children: [
+        TextButton(onPressed: (){
+          homeViewModel.fetchNameList();
+        }, child: Text("Load")),
+        Consumer<HomeViewModel>(
           builder: (context, value, child) {
-            switch (value.movieList.status) {
+            print("HOME: Consumer called");
+            print("HOME: ${value.colorNameList.status}");
+            switch (value.colorNameList.status) {
               case Status.LOADING:
                 return const Center(child: CircularProgressIndicator());
               case Status.ERROR:
-                return Text(value.movieList.message.toString());
+                return Text(value.colorNameList.message.toString());
               case Status.COMPLETED:
                 return Text("YAAAY!");
               case Status.DOWNLOADING:
@@ -55,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
             return Container();
           },
         ),
-      ),
+      ],),
     );
   }
 }

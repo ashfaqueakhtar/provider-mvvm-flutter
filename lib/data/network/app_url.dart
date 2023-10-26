@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 class AppUrl{
   static const _baseUrl = "https://reqres.in/";
@@ -6,4 +5,5 @@ class AppUrl{
   static var loginEndPont = "${_baseUrl}api/login";
   static var registerEndPont = "${_baseUrl}api/register";
   static var movieListEndPont = "${_moviesBaseUrl}movies_list";
+  static var colorNameListEndPont = "${_baseUrl}api/unknown";
 }

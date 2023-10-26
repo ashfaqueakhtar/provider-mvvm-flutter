@@ -1,24 +1,26 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:mvvm_provider_restapi_pref_solid_domainlayer/data/response/api_response.dart';
-import 'package:mvvm_provider_restapi_pref_solid_domainlayer/model/Movie_model.dart';
+import 'package:mvvm_provider_restapi_pref_solid_domainlayer/model/color_name_list_model.dart';
 import 'package:mvvm_provider_restapi_pref_solid_domainlayer/repository/home_repository.dart';
 
 class HomeViewModel with ChangeNotifier {
   final _homeRepo = HomeRepository();
 
-  ApiResponse<MovieModel> movieList = ApiResponse.loading();
+  ApiResponse<ColorNameListModel> colorNameList = ApiResponse.loading();
 
-  setMovieList(ApiResponse<MovieModel> response) {
-    movieList = response;
+  setColorNameList(ApiResponse<ColorNameListModel> response) {
+    print("HOMEVM: ${response.status}");
+    print("HOMEVM: ${response.data}");
+    colorNameList = response;
     notifyListeners();
   }
 
-  Future<void> fetchMovieList() async {
-    setMovieList(ApiResponse.loading());
-    _homeRepo.getMovieList().then((value) {
-      setMovieList(ApiResponse.completed(value as MovieModel?));
+  Future<void> fetchNameList() async {
+    setColorNameList(ApiResponse.loading());
+    _homeRepo.getColorNameList().then((value) {
+      setColorNameList(ApiResponse.completed(value));
     }).onError((error, stackTrace) {
-      setMovieList(ApiResponse.error(error.toString()));
+      setColorNameList(ApiResponse.error(error.toString()));
     });
   }
 

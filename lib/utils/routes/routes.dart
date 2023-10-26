@@ -28,8 +28,7 @@ class Routes {
         name: RoutesName.home,
         path: "/${RoutesName.home}",
         builder: (BuildContext context, GoRouterState state) {
-          return HomeScreen(); /*ChangeNotifierProvider.value(
-              value: HomeViewModel(), child: const HomeScreen());*/
+          return const HomeScreen();
         },
       ),
       GoRoute(
